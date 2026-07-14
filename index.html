@@ -5,19 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>NeuroGeneration | 青年心脑联盟</title>
     <style>
-        :root {
-            --bg-color: #000000;
-            --text-color: #ffffff;
-            --accent-cyan: #4faed8; 
-            --accent-pink: #df4d85; 
-            --sub-text: #9ca3af;
-            --card-bg: rgba(255, 255, 255, 0.04);
-            --border-color: rgba(255, 255, 255, 0.12);
-            
-            --font-academic: "Times New Roman", Times, "Songti SC", "SimSun", serif;
-            --font-logo: "Impact", "Arial Black", -apple-system, sans-serif;
-        }
-
+        /* =========================================
+           NG 核心配色与绝对稳固的基础样式 
+           ========================================= */
         * {
             box-sizing: border-box;
             margin: 0;
@@ -25,16 +15,190 @@
         }
 
         body {
-            font-family: var(--font-academic);
-            background-color: var(--bg-color);
-            color: var(--text-color);
+            /* 严格按照你的要求更换字体 */
+            font-family: "Times New Roman", Times, "Songti SC", "SimSun", serif;
+            background-color: #000000;
+            color: #ffffff;
             line-height: 1.8;
-            overflow-x: hidden;
+            padding-bottom: 60px;
         }
 
-        /* 强力背景微光，确保绝对不是死黑一片 */
-        .bg-glow {
-            position: fixed;
+        /* 顶部导航栏：采用最安全的传统黑背景 */
+        header {
+            width: 100%;
+            padding: 20px 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: #0d0d0d;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .logo-container {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        /* 预留Logo位，即使没图也占位不垮 */
+        .logo-img {
+            height: 40px;
+            width: 40px;
+            object-fit: cover;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        /* 完美还原强力无衬线极粗粗体 Logo */
+        .logo-text {
+            font-family: "Impact", "Arial Black", sans-serif;
+            font-size: 26px;
+            font-weight: 900;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+        }
+
+        .logo-cyan { color: #4faed8; }
+        .logo-pink { color: #df4d85; }
+
+        .lang-btn {
+            background: transparent;
+            border: 1px solid #4faed8;
+            color: #4faed8;
+            padding: 5px 14px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-family: "Times New Roman", Times, serif;
+            font-size: 14px;
+            font-weight: bold;
+            transition: all 0.2s;
+        }
+
+        .lang-btn:hover {
+            background: #4faed8;
+            color: #000000;
+        }
+
+        /* 核心主干单列布局：绝不可能错位 */
+        .container {
+            max-width: 850px;
+            margin: 0 auto;
+            padding: 60px 20px;
+            text-align: center;
+        }
+
+        .badge {
+            display: inline-block;
+            padding: 5px 15px;
+            background: rgba(79, 174, 216, 0.1);
+            border: 1px solid rgba(79, 174, 216, 0.3);
+            color: #4faed8;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: bold;
+            letter-spacing: 1px;
+            margin-bottom: 25px;
+        }
+
+        h1 {
+            font-size: 42px;
+            font-weight: bold;
+            line-height: 1.3;
+            margin-bottom: 25px;
+        }
+
+        .hero-desc {
+            font-size: 18px;
+            color: #e5e7eb;
+            margin-bottom: 40px;
+            text-align: justify;
+            text-justify: inter-word;
+        }
+
+        /* 大合照相框 */
+        .photo-box {
+            width: 100%;
+            background: #0d0d0d;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 12px;
+            padding: 10px;
+            margin-bottom: 50px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.8);
+        }
+
+        .photo-box img {
+            width: 100%;
+            height: auto;
+            border-radius: 8px;
+            display: block;
+        }
+
+        /* 关于我们与目标的板块：改为上下单列，100%防乱套 */
+        .section-card {
+            background: #0d0d0d;
+            border-left: 4px solid #4faed8;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            border-right: 1px solid rgba(255, 255, 255, 0.05);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            padding: 35px;
+            border-radius: 0 12px 12px 0;
+            margin-bottom: 30px;
+            text-align: left;
+        }
+
+        .section-card.pink-variant {
+            border-left-color: #df4d85;
+        }
+
+        .section-card h2 {
+            font-size: 24px;
+            margin-bottom: 20px;
+            font-weight: bold;
+        }
+
+        .section-card.left-variant h2 { color: #4faed8; }
+        .section-card.pink-variant h2 { color: #df4d85; }
+
+        .section-card p {
+            font-size: 16px;
+            color: #e5e7eb;
+            margin-bottom: 10px;
+        }
+
+        .section-card ul {
+            list-style-type: none;
+        }
+
+        .section-card ul li {
+            position: relative;
+            padding-left: 20px;
+            margin-bottom: 12px;
+            font-size: 16px;
+            color: #e5e7eb;
+        }
+
+        .section-card ul li::before {
+            content: "•";
+            position: absolute;
+            left: 0;
+            color: #df4d85;
+            font-size: 18px;
+        }
+
+        footer {
+            margin-top: 60px;
+            padding-top: 30px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: #666666;
+            font-size: 13px;
+            text-align: center;
+        }
+
+        /* 隐藏英文版的初始状态 */
+        [data-lang="en"] { display: none; }
+
+        @media (max-width: 600px) {
+            header { padding: 15px 20px; }            position: fixed;
             top: 0;
             left: 0;
             width: 100vw;
