@@ -3,17 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>NeuroGeneration | 青年神经科学前沿平台</title>
+    <title>NeuroGeneration | 青年心脑联盟</title>
     <style>
         /* =========================================
-           NG 核心配色方案 (基于文字Logo精准调色)
-           - 背景: #000000 (纯黑)
-           - Neuro 青蓝: #4faed8 
-           - Generation 玫粉: #df4d85
-           - 文本: #ffffff (纯白)
-           - 辅色: #9ca3af (浅灰)
+           NG 核心配色方案 
            ========================================= */
-
         :root {
             --bg-color: #000000;
             --text-color: #ffffff;
@@ -22,6 +16,14 @@
             --sub-text: #9ca3af;
             --card-bg: rgba(255, 255, 255, 0.04);
             --border-color: rgba(255, 255, 255, 0.08);
+            
+            /* =========================================
+               高定字体库配置
+               - 中文默认宋体，英文默认 Times New Roman (古典学术感)
+               - Logo 独享无衬线极粗现代体 (力量感)
+               ========================================= */
+            --font-academic: "Times New Roman", Times, "Songti SC", "SimSun", serif;
+            --font-logo: "Impact", "Arial Black", -apple-system, sans-serif;
         }
 
         * {
@@ -31,14 +33,13 @@
         }
 
         body {
-            font-family: 'PingFang SC', 'Microsoft YaHei', -apple-system, sans-serif;
+            font-family: var(--font-academic);
             background-color: var(--bg-color);
             color: var(--text-color);
-            line-height: 1.6;
+            line-height: 1.8;
             overflow-x: hidden;
         }
 
-        /* 神经网络动态微光背景 */
         .bg-glow {
             position: fixed;
             top: 0;
@@ -67,330 +68,95 @@
             z-index: 100;
         }
 
-        /* Logo 区域样式改进 */
         .logo-container {
             display: flex;
             align-items: center;
-            height: 50px; /* 固定高度防止撑开导航栏 */
+            gap: 12px;
+            height: 45px;
         }
 
         .logo-img {
             height: 100%;
             width: auto;
             object-fit: contain;
-            /* 技巧：如果你的图片是白底，使用 mix-blend-mode: screen 可以直接过滤掉白底，使其在黑夜模式下完美融合 */
-            mix-blend-mode: screen; 
+            border-radius: 50%;
         }
 
-        /* 如果图片还没上传成功，备用的文字样式 */
-        .logo-fallback {
-            font-size: 20px;
+        /* 完美还原 image_7a2211.png 中的极粗无衬线科技感字体 */
+        .logo-text {
+            font-family: var(--font-logo);
+            font-size: 24px;
             font-weight: 900;
-            letter-spacing: 1px;
-            display: none; /* 有图时隐藏 */
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+        }
+
+        .nav-right {
+            display: flex;
+            align-items: center;
+            gap: 30px;
         }
 
         nav a {
             color: var(--sub-text);
             text-decoration: none;
-            margin-left: 30px;
-            font-size: 14px;
+            font-size: 15px;
             font-weight: 500;
-            transition: color 0.3s, text-shadow 0.3s;
+            transition: color 0.3s;
         }
 
         nav a:hover, nav a.active {
             color: var(--accent-cyan);
-            text-shadow: 0 0 10px rgba(79, 174, 216, 0.4);
         }
 
-        /* 英雄主视觉区 */
+        .lang-btn {
+            background: transparent;
+            border: 1px solid var(--accent-cyan);
+            color: var(--accent-cyan);
+            padding: 4px 12px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 13px;
+            font-family: var(--font-academic);
+            font-weight: 600;
+            transition: all 0.3s;
+        }
+
+        .lang-btn:hover {
+            background: var(--accent-cyan);
+            color: #000000;
+            box-shadow: 0 0 10px rgba(79, 174, 216, 0.5);
+        }
+
+        /* Hero 区域 */
         .hero {
             max-width: 1200px;
             margin: 0 auto;
-            padding: 120px 20px 80px 20px;
+            padding: 100px 20px 40px 20px;
             text-align: center;
-            position: relative;
         }
 
         .badge {
             display: inline-block;
-            padding: 7px 18px;
+            padding: 6px 18px;
             background: rgba(79, 174, 216, 0.1);
             border: 1px solid rgba(79, 174, 216, 0.3);
             color: var(--accent-cyan);
             border-radius: 20px;
             font-size: 13px;
-            font-weight: 700;
-            margin-bottom: 30px;
+            font-weight: bold;
+            margin-bottom: 25px;
             letter-spacing: 1.5px;
         }
 
         .hero h1 {
-            font-size: 56px;
-            font-weight: 900;
-            line-height: 1.3;
-            margin-bottom: 30px;
-            letter-spacing: -1px;
+            font-size: 46px;
+            font-weight: bold;
+            line-height: 1.4;
+            margin-bottom: 25px;
         }
 
         .hero h1 span.cyan-text { color: var(--accent-cyan); }
         .hero h1 span.pink-text { color: var(--accent-pink); }
 
-        .hero p {
-            font-size: 18px;
-            color: var(--sub-text);
-            max-width: 650px;
-            margin: 0 auto 50px auto;
-        }
-
-        .cta-buttons a {
-            display: inline-block;
-            padding: 14px 32px;
-            border-radius: 8px;
-            font-size: 16px;
-            font-weight: 700;
-            text-decoration: none;
-            transition: all 0.3s;
-        }
-
-        .btn-primary {
-            background: linear-gradient(135deg, var(--accent-cyan), #3b9ac4);
-            color: #000000;
-            box-shadow: 0 4px 20px rgba(79, 174, 216, 0.3);
-            margin-right: 20px;
-        }
-
-        .btn-primary:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 6px 24px rgba(79, 174, 216, 0.5);
-        }
-
-        .btn-secondary {
-            background: transparent;
-            color: var(--accent-pink);
-            border: 2px solid var(--accent-pink);
-        }
-
-        .btn-secondary:hover {
-            background: rgba(223, 77, 133, 0.1);
-            box-shadow: 0 0 20px rgba(223, 77, 133, 0.3);
-            color: #ffffff;
-        }
-
-        /* 里程碑板块 */
-        .stats {
-            max-width: 1000px;
-            margin: 40px auto 100px auto;
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 25px;
-            padding: 0 20px;
-        }
-
-        .stat-card {
-            background: var(--card-bg);
-            border: 1px solid var(--border-color);
-            padding: 35px;
-            border-radius: 12px;
-            backdrop-filter: blur(6px);
-            text-align: center;
-            transition: border-color 0.3s;
-        }
-
-        .stat-card:hover {
-            border-color: rgba(255, 255, 255, 0.2);
-        }
-
-        .stat-number {
-            font-size: 40px;
-            font-weight: 800;
-            background: linear-gradient(to right, var(--accent-pink), #ffffff);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            margin-bottom: 10px;
-        }
-
-        .stat-label {
-            font-size: 15px;
-            color: var(--sub-text);
-        }
-
-        /* 核心版块介绍 */
-        .sections-container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 60px 20px;
-        }
-
-        .section-title {
-            font-size: 32px;
-            font-weight: 800;
-            margin-bottom: 50px;
-            text-align: center;
-        }
-
-        .grid-layout {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 40px;
-        }
-
-        .feature-box {
-            background: var(--card-bg);
-            border: 1px solid var(--border-color);
-            padding: 45px;
-            border-radius: 20px;
-            transition: all 0.3s;
-        }
-
-        .feature-box:nth-child(odd):hover {
-            border-color: var(--accent-cyan);
-            box-shadow: 0 0 30px rgba(79, 174, 216, 0.15);
-            transform: translateY(-5px);
-        }
-
-        .feature-box:nth-child(even):hover {
-            border-color: var(--accent-pink);
-            box-shadow: 0 0 30px rgba(223, 77, 133, 0.15);
-            transform: translateY(-5px);
-        }
-
-        .feature-icon {
-            width: 48px;
-            height: 48px;
-            border-radius: 10px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 24px;
-            font-weight: bold;
-            margin-bottom: 25px;
-        }
-
-        .feature-box:nth-child(odd) .feature-icon {
-            background: rgba(79, 174, 216, 0.1);
-            color: var(--accent-cyan);
-            border: 1px solid rgba(79, 174, 216, 0.2);
-        }
-
-        .feature-box:nth-child(even) .feature-icon {
-            background: rgba(223, 77, 133, 0.1);
-            color: var(--accent-pink);
-            border: 1px solid rgba(223, 77, 133, 0.2);
-        }
-
-        .feature-box h3 {
-            font-size: 22px;
-            font-weight: 700;
-            margin-bottom: 15px;
-        }
-
-        .feature-box p {
-            color: var(--sub-text);
-            font-size: 15px;
-            line-height: 1.7;
-        }
-
-        footer {
-            max-width: 1200px;
-            margin: 120px auto 0 auto;
-            padding: 50px 20px;
-            border-top: 1px solid var(--border-color);
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            color: #555555;
-            font-size: 14px;
-        }
-
-        @media (max-width: 768px) {
-            header { padding: 20px; }
-            nav { display: none; }
-            .hero h1 { font-size: 36px; }
-            .stats { grid-template-columns: 1fr; }
-            .grid-layout { grid-template-columns: 1fr; }
-            footer { flex-direction: column; gap: 15px; }
-        }
-    </style>
-</head>
-<body>
-
-    <div class="bg-glow"></div>
-
-    <header>
-        <div class="logo-container">
-            <img src="logo.png" alt="NeuroGeneration Logo" class="logo-img" onerror="this.style.display='none'; document.getElementById('fallback').style.display='block';">
-            <div id="fallback" class="logo-fallback"><span style="color: var(--accent-cyan);">Neuro</span><span style="color: var(--accent-pink);">Generation</span></div>
-        </div>
-        <nav>
-            <a href="#" class="active">首页</a>
-            <a href="#about">关于</a>
-            <a href="#events">峰会</a>
-            <a href="#insights">科普</a>
-        </nav>
-    </header>
-
-    <section class="hero">
-        <span class="badge">CONNECTING MINDS, SHAPING FUTURE</span>
-        <h1>解构青年智慧，探索<span class="cyan-text">大脑</span>与<span class="pink-text">未来</span></h1>
-        <p>NeuroGeneration 是由青年学生发起的神经科学学术共同体。我们致力于打破跨学科壁垒，通过高规格学术峰会与跨界艺术碰撞，搭建属于新生代的脑科学阵营。</p>
-        <div class="cta-buttons">
-            <a href="#events" class="btn-primary">探索历届峰会</a>
-            <a href="#join" class="btn-secondary">加入我们</a>
-        </div>
-    </section>
-
-    <section class="stats">
-        <div class="stat-card">
-            <div class="stat-number">4th+</div>
-            <div class="stat-label">区域及全国级学术学术论坛</div>
-        </div>
-        <div class="stat-card">
-            <div class="stat-number">1000+</div>
-            <div class="stat-label">深度覆盖青年学术爱好者</div>
-        </div>
-        <div class="stat-card">
-            <div class="stat-number">Bio+Art</div>
-            <div class="stat-label">结构生物学与正念艺术探索</div>
-        </div>
-    </section>
-
-    <section class="sections-container">
-        <h2 class="section-title">探索我们的核心阵营</h2>
-        <div class="grid-layout">
-            
-            <div class="feature-box">
-                <div class="feature-icon">Ψ</div>
-                <h3>学术峰会回顾</h3>
-                <p>从历届上海高中生神经科学论坛，到深圳全国学术峰会（National Summit）。在这里沉淀青年学者的精彩发言、前沿议程以及圆桌碰撞的智慧火花。</p>
-            </div>
-
-            <div class="feature-box">
-                <div class="feature-icon">🧬</div>
-                <h3>硬核脑科学科普</h3>
-                <p>沉淀团队的学术思考与独立研究。涵盖分子生物学、蛋白质组学、神经环路等硬核科普，用严谨而不失趣味的视角，解码大脑与个性编码的终极奥秘。</p>
-            </div>
-
-            <div class="feature-box">
-                <div class="feature-icon">🎨</div>
-                <h3>“We Are Our Brains” 艺术展</h3>
-                <p>科学与禅意的交织。展示通过微细线条画、多色生物结构粘土模型等媒介开展的跨界探索，将复杂的神经结构映射至宏观的自我与个体存在论。</p>
-            </div>
-
-            <div class="feature-box">
-                <div class="feature-icon">🤝</div>
-                <h3>青年招募与共创</h3>
-                <p>招募全国各校主理人、内容创作者及志愿者。无论你擅长严谨的文献检索、新媒体运营，还是跨界艺术设计，这里都有属于你的共创空间。</p>
-            </div>
-
-        </div>
-    </section>
-
-    <footer>
-        <div>© 2026 NeuroGeneration. All Rights Reserved.</div>
-        <div>Designed for the future neuroscientists.</div>
-    </footer>
-
-</body>
-</html>
+        .hero-
