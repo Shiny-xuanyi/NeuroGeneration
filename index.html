@@ -6,18 +6,8 @@
     <title>NeuroGeneration | 青年心脑联盟</title>
     <style>
         /* =========================================
-           NG 核心全局配置与完美还原的色彩变量
+           NG 核心绝对稳固底色与高定中英衬线字族
            ========================================= */
-        :root {
-            --bg-color: #000000;
-            --text-color: #ffffff;
-            --sub-text: #d1d5db;
-            --accent-cyan: #4faed8;
-            --accent-pink: #df4d85;
-            --border-color: rgba(255, 255, 255, 0.08);
-            --font-logo: "Impact", "Arial Black", -apple-system, sans-serif;
-        }
-
         * {
             box-sizing: border-box;
             margin: 0;
@@ -25,16 +15,182 @@
         }
 
         body {
-            background-color: var(--bg-color);
-            color: var(--text-color);
+            background-color: #000000;
+            color: #ffffff;
             line-height: 1.8;
             overflow-x: hidden;
             font-family: "Times New Roman", Times, "Songti SC", "SimSun", serif;
         }
 
-        /* 完美还原的霓虹微光背景 */
+        /* 纯安全级背景冷暖漫反射微光 */
         .bg-glow {
             position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background: 
+                radial-gradient(circle at 10% 20%, rgba(79, 174, 216, 0.07) 0%, transparent 40%),
+                radial-gradient(circle at 90% 80%, rgba(223, 77, 133, 0.07) 0%, transparent 40%);
+            z-index: -1;
+            pointer-events: none;
+        }
+
+        /* 顶部导航栏 */
+        header {
+            width: 100%;
+            padding: 16px 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: #050505;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .logo-container {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        /* Impact块状极粗工业现代 Logo 字体 */
+        .logo-text {
+            font-family: "Impact", "Arial Black", -apple-system, sans-serif;
+            font-size: 25px;
+            font-weight: 900;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+        }
+
+        .logo-cyan { color: #4faed8; }
+        .logo-pink { color: #df4d85; }
+
+        .lang-btn {
+            background: transparent;
+            border: 1px solid #4faed8;
+            color: #4faed8;
+            padding: 5px 14px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 13px;
+            font-weight: bold;
+            transition: all 0.2s ease;
+        }
+
+        .lang-btn:hover {
+            background: #4faed8;
+            color: #000000;
+            box-shadow: 0 0 10px rgba(79, 174, 216, 0.4);
+        }
+
+        /* 主体布局核心轴 */
+        .main-wrapper {
+            max-width: 1050px;
+            margin: 0 auto;
+            padding: 60px 20px 0 20px;
+            text-align: center;
+        }
+
+        .badge {
+            display: inline-block;
+            padding: 5px 16px;
+            background: rgba(79, 174, 216, 0.08);
+            border: 1px solid rgba(79, 174, 216, 0.25);
+            color: #4faed8;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: bold;
+            letter-spacing: 1.5px;
+            margin-bottom: 25px;
+        }
+
+        h1 {
+            font-size: 45px;
+            line-height: 1.4;
+            margin-bottom: 25px;
+        }
+
+        .hero-desc {
+            font-size: 19px;
+            color: #d1d5db;
+            max-width: 800px;
+            margin: 0 auto 45px auto;
+        }
+
+        /* =========================================
+           嵌入式大合照高级点击跳转舱
+           ========================================= */
+        .photo-link-wrapper {
+            display: block;
+            text-decoration: none;
+            max-width: 880px;
+            margin: 0 auto 65px auto;
+        }
+
+        .photo-container {
+            width: 100%;
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            padding: 10px;
+            border-radius: 14px;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.7);
+            position: relative;
+            overflow: hidden;
+            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        /* 鼠标悬停大合照：柔和霓虹粉光内聚，高级感拉满 */
+        .photo-link-wrapper:hover .photo-container {
+            border-color: #df4d85;
+            transform: translateY(-4px);
+            box-shadow: 0 20px 40px rgba(223, 77, 133, 0.15);
+        }
+
+        .photo-container img {
+            width: 100%;
+            height: auto;
+            border-radius: 8px;
+            display: block;
+        }
+
+        /* 右下角极简交互微光提示条 */
+        .photo-hint {
+            position: absolute;
+            bottom: 20px;
+            right: 20px;
+            background: rgba(0, 0, 0, 0.8);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            padding: 5px 12px;
+            border-radius: 4px;
+            color: #ffffff;
+            font-size: 12px;
+            opacity: 0;
+            transform: translateY(5px);
+            transition: all 0.3s ease;
+        }
+
+        .photo-link-wrapper:hover .photo-hint {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* 左右高阶双列卡片 */
+        .grid-layout {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+            text-align: left;
+            margin-bottom: 40px;
+        }
+
+        .neon-card {
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            padding: 35px 40px;
+            border            position: fixed;
             top: 0;
             left: 0;
             width: 100vw;
